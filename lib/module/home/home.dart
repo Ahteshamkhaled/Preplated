@@ -20,14 +20,38 @@ class HomePage extends StatelessWidget {
       {'icon': Icons.set_meal, 'label': 'Meals'},
     ];
 
-    final featured = List.generate(
-      6,
-      (i) => {
-        'title': 'Dish ${i + 1}',
-        'subtitle': 'Tasty and fresh',
-        'rating': 4.5 - (i % 3) * 0.5,
+    final featured = [
+      {
+      'title': 'Margherita Pizza',
+      'subtitle': 'Classic Italian pizza',
+      'rating': 4.8,
       },
-    );
+      {
+      'title': 'Chocolate Lava Cake',
+      'subtitle': 'Rich and gooey dessert',
+      'rating': 4.7,
+      },
+      {
+      'title': 'Spicy Ramen',
+      'subtitle': 'Hot and flavorful noodles',
+      'rating': 4.6,
+      },
+      {
+      'title': 'Cappuccino',
+      'subtitle': 'Freshly brewed coffee',
+      'rating': 4.5,
+      },
+      {
+      'title': 'Grilled Chicken Meal',
+      'subtitle': 'Healthy and tasty',
+      'rating': 4.4,
+      },
+      {
+      'title': 'Veggie Burger',
+      'subtitle': 'Delicious plant-based option',
+      'rating': 4.3,
+      },
+    ];
 
     return Scaffold(
       // Ensure body resizes when keyboard appears to avoid vertical overflow
@@ -292,17 +316,25 @@ class HomePage extends StatelessWidget {
                           child: const Icon(Icons.fastfood, size: 28),
                         ),
                         title: Text(item['title'] as String),
-                        subtitle: Row(
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(item['subtitle'] as String),
-                            const SizedBox(width: 8),
-                            const Icon(
-                              Icons.star,
-                              size: 14,
-                              color: Colors.amber,
+                            Text(
+                              item['subtitle'] as String,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            const SizedBox(width: 4),
-                            Text((item['rating'] as double).toString()),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.star,
+                                  size: 14,
+                                  color: Colors.amber,
+                                ),
+                                const SizedBox(width: 4),
+                                Text((item['rating'] as double).toString()),
+                              ],
+                            ),
                           ],
                         ),
                         trailing: ElevatedButton(
